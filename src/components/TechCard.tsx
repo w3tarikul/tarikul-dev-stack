@@ -51,14 +51,14 @@ function TechCard({ technology, isAdded, onAddToStack }: TechCardProps) {
 
   return (
     <article
-      className={`flex h-full flex-col justify-between gap-2.25 rounded-xl border bg-white p-4 shadow-xs transition-colors duration-200 sm:gap-0 sm:rounded-2xl sm:p-5 sm:shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] ${
-        isAdded ? 'border-brand ring-1 ring-brand' : 'border-gray-100 sm:border-slate-100'
+      className={`group flex h-full flex-col justify-between gap-2.25 rounded-xl border bg-white p-4 shadow-xs transition duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_12px_24px_-8px_rgba(219,39,119,0.18)] sm:gap-0 sm:rounded-2xl sm:p-5 sm:shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] sm:hover:shadow-[0_12px_24px_-8px_rgba(219,39,119,0.18)] ${
+        isAdded ? 'border-brand ring-1 ring-brand' : 'border-gray-100 hover:border-pink-200 sm:border-slate-100 sm:hover:border-pink-200'
       }`}
     >
       <div className="flex flex-col gap-2.25 sm:gap-1.5 sm:pb-4">
         <div className="flex flex-wrap items-start">
           <div className={`flex size-10 items-center justify-center rounded-lg sm:bg-transparent ${styles.iconBox}`}>
-            <img src={icon} alt={`${name} logo`} className="size-6 sm:size-7" />
+            <img src={icon} alt={`${name} logo`} className="size-6 transition-transform duration-300 group-hover:scale-110 sm:size-7" />
           </div>
           <h3 className="ml-3 self-center font-inter text-base leading-5 font-bold text-gray-900 sm:order-last sm:mt-3 sm:ml-0 sm:w-full sm:self-auto sm:font-sans sm:text-lg sm:leading-7 sm:text-slate-900">
             {name}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import type { Technology } from '../types'
 import StackSidebar from './StackSidebar'
 import TechCard from './TechCard'
@@ -17,18 +18,22 @@ function TechnologySection() {
     const isAlreadyAdded = stack.some((item) => item.id === technology.id)
 
     if (isAlreadyAdded) {
+      toast.warning(`${technology.name} is already in your stack`)
       return
     }
 
     setStack([...stack, technology])
+    toast.success(`${technology.name} added to your stack`)
   }
 
   const handleRemove = (technology: Technology) => {
     setStack(stack.filter((item) => item.id !== technology.id))
+    toast.info(`${technology.name} removed from your stack`)
   }
 
   const handleRemoveAll = () => {
     setStack([])
+    toast.info('All technologies removed from your stack')
   }
 
   return (

@@ -1,23 +1,23 @@
-# tarikul-dev-stack
+# Dev Stack
 
 **Dev Stack** is a responsive web app that helps developers explore popular technologies and build their own tech stack. You can browse frontend, backend, database, language, styling, and DevOps tools, compare them by rating and difficulty, and add your favorites to a personal **Your Stack** panel.
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
-| Technology | Purpose |
-| --- | --- |
-| **React** | Building the UI with components, props, and state |
-| **TypeScript** | Adding types for safer, easier-to-read code |
-| **Tailwind CSS** | Styling and responsive layouts |
-| **React-Toastify** | Alert messages for stack actions |
-| **JSON** | Storing the technology data |
-| **Vite** | Fast development server and build tool |
+| Technology         | Purpose                                           |
+| ------------------ | ------------------------------------------------- |
+| **React**          | Building the UI with components, props, and state |
+| **TypeScript**     | Adding types for safer, easier-to-read code       |
+| **Tailwind CSS**   | Styling and responsive layouts                    |
+| **React-Toastify** | Alert messages for stack actions                  |
+| **JSON**           | Storing the technology data                       |
+| **Vite**           | Fast development server and build tool            |
 
 ---
 
-## ✨ Features
+## Features
 
 1. **Build your own stack** – Click **Add to Stack** on any technology card to add it to the Your Stack panel. The same technology can't be added twice, and each item can be removed one by one or all at once with **Remove All**.
 2. **Instant feedback** – Toast alerts appear when you add a technology, try to add a duplicate, remove one, or clear the stack. A loading spinner shows while the technology data is being loaded.
@@ -25,7 +25,7 @@
 
 ---
 
-## 🚀 Run It Locally
+## Run It Locally
 
 ```bash
 git clone https://github.com/w3tarikul/tarikul-dev-stack.git
@@ -38,7 +38,7 @@ Then open `http://localhost:5173` in your browser.
 
 ---
 
-## 📚 React Questions
+## React Frequently Asked Questions
 
 ### 1. What is JSX, and why is it used in React?
 
@@ -68,7 +68,7 @@ I used it in:
 - **`Navbar`** – `activeLink` (highlighted link), `isMenuOpen` (mobile menu), and `isHidden` (smart sticky header)
 
 ```tsx
-const [stack, setStack] = useState<Technology[]>([])
+const [stack, setStack] = useState<Technology[]>([]);
 ```
 
 ### 4. What does the useEffect hook do, and why did you need it to load the JSON data?
@@ -79,12 +79,14 @@ I needed it to load the JSON because fetching data directly in the component bod
 
 ```tsx
 useEffect(() => {
-  fetch('/technologies.json')
-    .then((response) => response.json())
-    .then((data: Technology[]) => setTechnologies(data))
-    .catch(() => toast.error('Could not load technologies. Please try again.'))
-    .finally(() => setIsLoading(false))
-}, [])
+    fetch("/technologies.json")
+        .then((response) => response.json())
+        .then((data: Technology[]) => setTechnologies(data))
+        .catch(() =>
+            toast.error("Could not load technologies. Please try again."),
+        )
+        .finally(() => setIsLoading(false));
+}, []);
 ```
 
 ### 5. Why does every item in a .map() list need a unique key prop?
@@ -92,9 +94,11 @@ useEffect(() => {
 The `key` helps React tell list items apart. When an item is added, removed, or moved, React uses the key to update only that item instead of rebuilding the whole list. Keys should be unique and stable, so I used each technology's `id` instead of the array index.
 
 ```tsx
-{technologies.map((technology) => (
-  <TechCard key={technology.id} technology={technology} />
-))}
+{
+    technologies.map((technology) => (
+        <TechCard key={technology.id} technology={technology} />
+    ));
+}
 ```
 
 ### 6. What is conditional rendering? Show one place you used it.
@@ -104,15 +108,17 @@ Conditional rendering means showing different UI depending on a condition, usual
 In the Your Stack panel, if nothing is selected it shows an empty message; otherwise it shows the list of selected technologies:
 
 ```tsx
-{stack.length === 0 ? (
-  <div>Your stack is empty.</div>
-) : (
-  <ul>
-    {stack.map((technology) => (
-      <li key={technology.id}>{technology.name}</li>
-    ))}
-  </ul>
-)}
+{
+    stack.length === 0 ? (
+        <div>Your stack is empty.</div>
+    ) : (
+        <ul>
+            {stack.map((technology) => (
+                <li key={technology.id}>{technology.name}</li>
+            ))}
+        </ul>
+    );
+}
 ```
 
 I also used it for the loading spinner and for switching the card button text to **✓ Added to Stack**.
@@ -126,9 +132,9 @@ In this project, `TechnologySection` (parent) passes the technology data and a `
 
 ```tsx
 <TechCard
-  technology={technology}
-  isAdded={stack.some((item) => item.id === technology.id)}
-  onAddToStack={handleAddToStack}
+    technology={technology}
+    isAdded={stack.some((item) => item.id === technology.id)}
+    onAddToStack={handleAddToStack}
 />
 ```
 

@@ -7,6 +7,7 @@ const navLinks = ['Home', 'Technologies', 'Projects', 'About', 'Contact']
 function Navbar() {
   const [activeLink, setActiveLink] = useState('Home')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isHidden, setIsHidden] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,13 +20,36 @@ function Navbar() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  useEffect(() => {
+    let lastScrollY = window.scrollY
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      const scrollDistance = currentScrollY - lastScrollY
+
+      if (Math.abs(scrollDistance) < 5) {
+        return
+      }
+
+      setIsHidden(scrollDistance > 0 && currentScrollY > 80)
+      lastScrollY = currentScrollY
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const handleLinkClick = (link: string) => {
     setActiveLink(link)
     setIsMenuOpen(false)
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-100 bg-white">
+    <header
+      className={`sticky top-0 z-50 border-b border-slate-100 bg-white transition-transform duration-300 ${
+        isHidden && !isMenuOpen ? '-translate-y-full' : 'translate-y-0'
+      }`}
+    >
       <div className="mx-auto grid h-12 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-5 sm:h-16 sm:px-8 lg:flex lg:h-20 lg:justify-between">
         <button
           type="button"

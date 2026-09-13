@@ -1,11 +1,12 @@
 function Logo() {
   return (
-    <a href="#" className="flex items-center gap-2.5">
-      <span className="flex size-8 items-center justify-center rounded-lg bg-linear-to-tr from-pink-500 to-violet-600 text-sm font-extrabold tracking-[-0.5px] text-white shadow-xs">
+    <a href="#" className="flex items-center gap-1.5 sm:gap-2.5">
+      <span className="flex size-6 items-center justify-center rounded-[5px] bg-linear-to-tr from-pink-500 to-violet-600 text-[9px] font-extrabold tracking-[-0.5px] text-white shadow-xs sm:size-8 sm:rounded-lg sm:text-sm">
         DS
       </span>
-      <span className="text-xl leading-7 font-bold tracking-[-0.5px] text-slate-900">
-        Dev <span className="font-extrabold text-brand">Stack</span>
+      <span className="font-inter text-[11px] font-bold tracking-[-0.45px] text-gray-900 sm:font-sans sm:text-xl sm:leading-7 sm:tracking-[-0.5px] sm:text-slate-900">
+        Dev
+        <span className="text-brand sm:ml-1.25 sm:font-extrabold">Stack</span>
       </span>
     </a>
   )

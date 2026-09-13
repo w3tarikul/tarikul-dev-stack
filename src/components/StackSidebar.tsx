@@ -2,9 +2,11 @@ import type { Technology } from '../types'
 
 type StackSidebarProps = {
   stack: Technology[]
+  onRemove: (technology: Technology) => void
+  onRemoveAll: () => void
 }
 
-function StackSidebar({ stack }: StackSidebarProps) {
+function StackSidebar({ stack, onRemove, onRemoveAll }: StackSidebarProps) {
   return (
     <aside className="rounded-2xl border border-slate-100 bg-white p-5 shadow-xs">
       <h3 className="text-base leading-6 font-bold text-slate-900">Your Stack</h3>
@@ -30,6 +32,7 @@ function StackSidebar({ stack }: StackSidebarProps) {
                 </div>
                 <button
                   type="button"
+                  onClick={() => onRemove(technology)}
                   aria-label={`Remove ${technology.name}`}
                   className="ml-auto flex size-6 shrink-0 cursor-pointer items-center justify-center text-slate-400 transition-colors hover:text-slate-600"
                 >
@@ -42,6 +45,7 @@ function StackSidebar({ stack }: StackSidebarProps) {
           </ul>
           <button
             type="button"
+            onClick={onRemoveAll}
             className="mt-12 h-7.5 w-full cursor-pointer rounded-lg border-[0.5px] border-[#ed8c85] bg-white font-inter text-sm leading-4 font-semibold text-[#d82c20] transition-colors hover:bg-red-50"
           >
             Remove All

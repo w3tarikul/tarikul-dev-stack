@@ -2,6 +2,8 @@ import type { BadgeColor, Technology } from '../types'
 
 type TechCardProps = {
   technology: Technology
+  isAdded: boolean
+  onAddToStack: (technology: Technology) => void
 }
 
 const badgeStyles: Record<BadgeColor, { badge: string; iconBox: string }> = {
@@ -43,7 +45,7 @@ const badgeStyles: Record<BadgeColor, { badge: string; iconBox: string }> = {
   },
 }
 
-function TechCard({ technology }: TechCardProps) {
+function TechCard({ technology, isAdded, onAddToStack }: TechCardProps) {
   const { name, category, description, icon, rating, difficulty, badge, badgeColor } = technology
   const styles = badgeStyles[badgeColor]
 
@@ -81,9 +83,15 @@ function TechCard({ technology }: TechCardProps) {
         </div>
         <button
           type="button"
-          className="h-8.75 w-full cursor-pointer rounded-lg bg-gray-900 font-inter text-xs leading-4 text-white transition hover:bg-gray-800 sm:h-9 sm:bg-[#0a0f1d] sm:font-sans sm:font-medium"
+          onClick={() => onAddToStack(technology)}
+          aria-disabled={isAdded}
+          className={`h-8.75 w-full rounded-lg font-inter text-xs leading-4 transition sm:h-9 sm:font-sans sm:font-medium ${
+            isAdded
+              ? 'cursor-not-allowed bg-slate-100 text-slate-400'
+              : 'cursor-pointer bg-gray-900 text-white hover:bg-gray-800 sm:bg-[#0a0f1d] sm:hover:bg-slate-800'
+          }`}
         >
-          Add to Stack
+          {isAdded ? '✓ Added to Stack' : 'Add to Stack'}
         </button>
       </div>
     </article>

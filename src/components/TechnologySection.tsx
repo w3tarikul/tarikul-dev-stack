@@ -5,12 +5,31 @@ import TechCard from './TechCard'
 
 function TechnologySection() {
   const [technologies, setTechnologies] = useState<Technology[]>([])
+  const [stack, setStack] = useState<Technology[]>([])
 
   useEffect(() => {
     fetch('/technologies.json')
       .then((response) => response.json())
       .then((data: Technology[]) => setTechnologies(data))
   }, [])
+
+  const handleAddToStack = (technology: Technology) => {
+    const isAlreadyAdded = stack.some((item) => item.id === technology.id)
+
+    if (isAlreadyAdded) {
+      return
+    }
+
+    setStack([...stack, technology])
+  }
+
+  const handleRemove = (technology: Technology) => {
+    setStack(stack.filter((item) => item.id !== technology.id))
+  }
+
+  const handleRemoveAll = () => {
+    setStack([])
+  }
 
   return (
     <section id="technologies" className="mx-auto w-full max-w-7xl scroll-mt-20 px-4 pb-14 sm:px-8 lg:pb-39">
@@ -27,12 +46,17 @@ function TechnologySection() {
       <div className="mt-5 flex flex-col gap-5 sm:mt-10 sm:gap-8 lg:grid lg:grid-cols-12 lg:items-start">
         <div className="grid grid-cols-1 items-start gap-3.5 sm:grid-cols-2 sm:gap-5 lg:col-span-8 xl:col-span-9 xl:grid-cols-3">
           {technologies.map((technology) => (
-            <TechCard key={technology.id} technology={technology} />
+            <TechCard
+              key={technology.id}
+              technology={technology}
+              isAdded={stack.some((item) => item.id === technology.id)}
+              onAddToStack={handleAddToStack}
+            />
           ))}
         </div>
 
         <div className="lg:sticky lg:top-24 lg:col-span-4 xl:col-span-3">
-          <StackSidebar stack={[]} />
+          <StackSidebar stack={stack} onRemove={handleRemove} onRemoveAll={handleRemoveAll} />
         </div>
       </div>
     </section>

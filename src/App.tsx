@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col gap-28 pt-24">
+      <main className="flex flex-col gap-28 lg:pt-24">
         <Hero />
       </main>
     </>

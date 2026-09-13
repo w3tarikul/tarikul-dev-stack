@@ -5,7 +5,7 @@ type LogoProps = {
 function Logo({ variant = 'header' }: LogoProps) {
   if (variant === 'footer') {
     return (
-      <a href="#" className="flex items-center gap-2.5">
+      <a href="#" className="flex items-center gap-2 sm:gap-2.5">
         <span className="flex size-6 items-center justify-center rounded-md bg-linear-to-tr from-pink-500 to-violet-600 text-xs leading-4 font-extrabold text-white">
           DS
         </span>

@@ -2,7 +2,7 @@ import bannerImage from '../assets/banner-stack.png'
 
 function Hero() {
   return (
-    <section id="home" className="mx-auto w-full max-w-7xl overflow-x-clip px-5 pt-10 pb-10 sm:px-8 sm:pt-16 sm:pb-12 lg:overflow-x-visible lg:pt-0 lg:pb-0">
+    <section id="home" className="mx-auto w-full max-w-7xl overflow-x-clip px-5 pt-10 pb-10 sm:px-8 sm:pt-16 sm:pb-12 lg:pt-0 lg:pb-0">
       <div className="flex flex-col items-center text-center lg:grid lg:min-h-105 lg:grid-cols-12 lg:items-center lg:gap-8 lg:text-left">
         <div className="flex flex-col items-center lg:col-span-7 lg:block lg:pr-8">
           <h1 className="pb-3 font-inter text-3xl leading-tight font-bold tracking-[-0.75px] text-gray-950 sm:pb-5 sm:text-5xl sm:tracking-[-1.2px] lg:pb-6 lg:text-5xl lg:leading-none lg:font-extrabold lg:tracking-[-1.2px] lg:text-slate-900 xl:text-6xl xl:tracking-[-1.5px]">

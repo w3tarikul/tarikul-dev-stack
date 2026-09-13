@@ -46,7 +46,7 @@ function StackSidebar({ stack, onRemove, onRemoveAll }: StackSidebarProps) {
           <button
             type="button"
             onClick={onRemoveAll}
-            className="mt-12 h-7.5 w-full cursor-pointer rounded-lg border-[0.5px] border-[#ed8c85] bg-white font-inter text-sm leading-4 font-semibold text-[#d82c20] transition-colors hover:bg-red-50"
+            className="mt-4 h-7.5 w-full cursor-pointer rounded-lg border-[0.5px] border-[#ed8c85] bg-white font-inter text-sm leading-4 font-semibold text-[#d82c20] transition-colors hover:bg-red-50"
           >
             Remove All
           </button>

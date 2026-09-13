@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import type { Technology } from '../types'
+import LoadingSpinner from './LoadingSpinner'
 import StackSidebar from './StackSidebar'
 import TechCard from './TechCard'
 
 function TechnologySection() {
   const [technologies, setTechnologies] = useState<Technology[]>([])
   const [stack, setStack] = useState<Technology[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     fetch('/technologies.json')
       .then((response) => response.json())
       .then((data: Technology[]) => setTechnologies(data))
+      .catch(() => toast.error('Could not load technologies. Please try again.'))
+      .finally(() => setIsLoading(false))
   }, [])
 
   const handleAddToStack = (technology: Technology) => {
@@ -49,15 +53,21 @@ function TechnologySection() {
       </div>
 
       <div className="mt-5 flex flex-col gap-5 sm:mt-10 sm:gap-8 lg:grid lg:grid-cols-12 lg:items-start">
-        <div className="grid grid-cols-1 items-start gap-3.5 sm:grid-cols-2 sm:gap-5 lg:col-span-8 xl:col-span-9 xl:grid-cols-3">
-          {technologies.map((technology) => (
-            <TechCard
-              key={technology.id}
-              technology={technology}
-              isAdded={stack.some((item) => item.id === technology.id)}
-              onAddToStack={handleAddToStack}
-            />
-          ))}
+        <div className="lg:col-span-8 xl:col-span-9">
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <div className="grid grid-cols-1 items-start gap-3.5 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3">
+              {technologies.map((technology) => (
+                <TechCard
+                  key={technology.id}
+                  technology={technology}
+                  isAdded={stack.some((item) => item.id === technology.id)}
+                  onAddToStack={handleAddToStack}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="lg:sticky lg:top-24 lg:col-span-4 xl:col-span-3">

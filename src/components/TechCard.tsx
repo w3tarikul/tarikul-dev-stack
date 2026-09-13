@@ -51,7 +51,7 @@ function TechCard({ technology, isAdded, onAddToStack }: TechCardProps) {
 
   return (
     <article
-      className={`flex flex-col gap-2.25 rounded-xl border bg-white p-4 shadow-xs transition-colors duration-200 sm:justify-between sm:gap-0 sm:rounded-2xl sm:p-5 sm:shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] ${
+      className={`flex h-full flex-col justify-between gap-2.25 rounded-xl border bg-white p-4 shadow-xs transition-colors duration-200 sm:gap-0 sm:rounded-2xl sm:p-5 sm:shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] ${
         isAdded ? 'border-brand ring-1 ring-brand' : 'border-gray-100 sm:border-slate-100'
       }`}
     >

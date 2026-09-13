@@ -50,7 +50,11 @@ function TechCard({ technology, isAdded, onAddToStack }: TechCardProps) {
   const styles = badgeStyles[badgeColor]
 
   return (
-    <article className="flex flex-col gap-2.25 rounded-xl border border-gray-100 bg-white p-4 shadow-xs sm:justify-between sm:gap-0 sm:rounded-2xl sm:border-slate-100 sm:p-5 sm:shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)]">
+    <article
+      className={`flex flex-col gap-2.25 rounded-xl border bg-white p-4 shadow-xs transition-colors duration-200 sm:justify-between sm:gap-0 sm:rounded-2xl sm:p-5 sm:shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] ${
+        isAdded ? 'border-brand ring-1 ring-brand' : 'border-gray-100 sm:border-slate-100'
+      }`}
+    >
       <div className="flex flex-col gap-2.25 sm:gap-1.5 sm:pb-4">
         <div className="flex flex-wrap items-start">
           <div className={`flex size-10 items-center justify-center rounded-lg sm:bg-transparent ${styles.iconBox}`}>
